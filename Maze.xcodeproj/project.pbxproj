@@ -13,6 +13,8 @@
 		DFD390BE264A6B5C00B74B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFD390BC264A6B5C00B74B8E /* Main.storyboard */; };
 		DFD390C0264A6B5E00B74B8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFD390BF264A6B5E00B74B8E /* Assets.xcassets */; };
 		DFD390C3264A6B5E00B74B8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFD390C1264A6B5E00B74B8E /* LaunchScreen.storyboard */; };
+		DFD390CB264A957900B74B8E /* oversound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DFD390CA264A957800B74B8E /* oversound.mp3 */; };
+		DFD390CD264A96FC00B74B8E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD390CC264A96FC00B74B8E /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		DFD390BF264A6B5E00B74B8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFD390C2264A6B5E00B74B8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFD390C4264A6B5E00B74B8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFD390CA264A957800B74B8E /* oversound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oversound.mp3; sourceTree = "<group>"; };
+		DFD390CC264A96FC00B74B8E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +63,9 @@
 				DFD390B6264A6B5C00B74B8E /* AppDelegate.swift */,
 				DFD390B8264A6B5C00B74B8E /* SceneDelegate.swift */,
 				DFD390BA264A6B5C00B74B8E /* ViewController.swift */,
+				DFD390CA264A957800B74B8E /* oversound.mp3 */,
 				DFD390BC264A6B5C00B74B8E /* Main.storyboard */,
+				DFD390CC264A96FC00B74B8E /* icon.png */,
 				DFD390BF264A6B5E00B74B8E /* Assets.xcassets */,
 				DFD390C1264A6B5E00B74B8E /* LaunchScreen.storyboard */,
 				DFD390C4264A6B5E00B74B8E /* Info.plist */,
@@ -124,6 +130,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFD390CB264A957900B74B8E /* oversound.mp3 in Resources */,
+				DFD390CD264A96FC00B74B8E /* icon.png in Resources */,
 				DFD390C3264A6B5E00B74B8E /* LaunchScreen.storyboard in Resources */,
 				DFD390C0264A6B5E00B74B8E /* Assets.xcassets in Resources */,
 				DFD390BE264A6B5C00B74B8E /* Main.storyboard in Resources */,

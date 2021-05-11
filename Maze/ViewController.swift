@@ -7,8 +7,11 @@
 
 import UIKit
 import CoreMotion
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var audioPlayerInstance : AVAudioPlayer! = nil
     
     var playerView: UIView!
     var playerMotionManager: CMMotionManager!
@@ -52,6 +55,17 @@ class ViewController: UIViewController {
         
         //let cellOffsetX = screenSize.width / CGFloat(maze[0].count * 2)
         //let cellOffsetY = screenSize.height / CGFloat(maze.count * 2)
+        
+        let soundFilePath = Bundle.main.path(forResource: "oversound", ofType: "mp3")!
+                let sound:URL = URL(fileURLWithPath: soundFilePath)
+        
+        do {
+                   audioPlayerInstance = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+               } catch {
+                   print("AVAudioPlayerインスタンス作成でエラー")
+               }
+               // 再生準備
+               audioPlayerInstance.prepareToPlay()
         
         
         
@@ -148,28 +162,28 @@ class ViewController: UIViewController {
                 posX = self.playerView.frame.width / 2
             }
             
-            if posY <= self.playerView.frame.width / 2 {
+            if posY <= self.playerView.frame.height / 2 {
                 self.speedY = 0
-                posY = self.playerView.frame.width / 2
+                posY = self.playerView.frame.height / 2
             }
             if posX >= self.screenSize.width - (self.playerView.frame.width / 2){
                 self.speedX = 0
                 posX = self.screenSize.width - (self.playerView.frame.width / 2)
             }
-            if posY >= self.screenSize.width - (self.playerView.frame.width / 2){
+            if posY >= self.screenSize.height - (self.playerView.frame.width / 2){
                 self.speedY = 0
-                posY = self.screenSize.width - (self.playerView.frame.width / 2)
+                posY = self.screenSize.height - (self.playerView.frame.width / 2)
             }
                 
                 for wallRect in self.wallRectArray {
                     if wallRect.intersects(self.playerView.frame){
-                        print("Game Over")
+                        self.gameCheck(result: "gameover", message: "壁に当たりました")
                         return
                     }
                 }
           
             if self.goalView.frame.intersects(self.playerView.frame){
-                print("Clear")
+                self.gameCheck(result: "clear", message: "クリアしました！")
                 return
             }
             
@@ -177,8 +191,42 @@ class ViewController: UIViewController {
         }
         
         playerMotionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: handler)
-        
+
 
 }
+    
+    func gameCheck(result: String, message: String){
+        if playerMotionManager.isAccelerometerActive {
+            playerMotionManager.stopAccelerometerUpdates()
+        }
+        let gameCheckAlert: UIAlertController = UIAlertController(title: result, message: message, preferredStyle: .alert)
+        
+        let retryAction = UIAlertAction(title: "もう一度", style: .default, handler: {
+            (action: UIAlertAction!) -> Void in
+            self.retry()
+        })
+        gameCheckAlert.addAction(retryAction)
+        
+        self.present(gameCheckAlert, animated: true, completion: nil)
+        
+        let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.warning)
+        
+        audioPlayerInstance.currentTime = 0
+                audioPlayerInstance.play()
+        
+        
+    }
+    
+    func retry() {
+        playerView.center = startView.center
+        
+        if !playerMotionManager.isAccelerometerActive {
+            self.startAccelerometer()
+        }
+        speedX = 0.0
+        speedY = 0.0
+        
+    }
 
 }
